@@ -6,7 +6,7 @@ diff -ur ray.orig/src/cal/calc/Makefile ray/src/cal/calc/Makefile
  
  install:	calc
 -	cp calc $(INSTDIR)
-+	cp calc $(DESTDIR)$(INSTDIR)
++	install calc $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o calc
@@ -18,7 +18,7 @@ diff -ur ray.orig/src/cal/calc/Rmakefile ray/src/cal/calc/Rmakefile
  
  install:	calc
 -	cp calc $(INSTDIR)
-+	cp calc $(DESTDIR)$(INSTDIR)
++	install calc $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o calc
@@ -30,7 +30,7 @@ diff -ur ray.orig/src/cal/ev/Makefile ray/src/cal/ev/Makefile
  
  install:	ev
 -	cp ev $(INSTDIR)
-+	cp ev $(DESTDIR)$(INSTDIR)
++	install ev $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o ev
@@ -42,7 +42,7 @@ diff -ur ray.orig/src/cal/ev/Rmakefile ray/src/cal/ev/Rmakefile
  
  install:	ev
 -	cp ev $(INSTDIR)
-+	cp ev $(DESTDIR)$(INSTDIR)
++	install ev $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o ev
@@ -54,7 +54,7 @@ diff -ur ray.orig/src/cal/rcalc/Makefile ray/src/cal/rcalc/Makefile
  
  install:	rcalc
 -	cp rcalc $(INSTDIR)
-+	cp rcalc $(DESTDIR)$(INSTDIR)
++	install rcalc $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o rcalc
@@ -66,7 +66,7 @@ diff -ur ray.orig/src/cal/rcalc/Rmakefile ray/src/cal/rcalc/Rmakefile
  
  install:	rcalc
 -	cp rcalc $(INSTDIR)
-+	cp rcalc $(DESTDIR)$(INSTDIR)
++	install rcalc $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o rcalc
@@ -78,7 +78,7 @@ diff -ur ray.orig/src/cal/util/Makefile ray/src/cal/util/Makefile
  
  install:	$(PROGS)
 -	cp $(PROGS) $(INSTDIR)
-+	cp $(PROGS) $(DESTDIR)$(INSTDIR)
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o $(PROGS)
@@ -90,15 +90,18 @@ diff -ur ray.orig/src/cal/util/Rmakefile ray/src/cal/util/Rmakefile
  
  install:	$(PROGS)
 -	cp $(PROGS) $(INSTDIR)
-+	cp $(PROGS) $(DESTDIR)$(INSTDIR)
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f *.o $(PROGS)
 diff -ur ray.orig/src/common/Rmakefile ray/src/common/Rmakefile
 --- ray.orig/src/common/Rmakefile	Wed Apr 16 01:53:33 1997
 +++ ray/src/common/Rmakefile	Sun Jun 17 17:16:16 2001
-@@ -32,7 +32,7 @@
+@@ -30,9 +30,10 @@
+ librt.a:	$(RTOBJ) $(PICOBJ) $(STDOBJ) $(SYSOBJ)
+ 	ar rc librt.a $(RTOBJ) $(PICOBJ) $(STDOBJ) $(SYSOBJ)
  	-ranlib librt.a
++	cp librt.a ../lib/librayt.a
  
  install:	librt.a
 -	mv librt.a ../lib/librt.a
@@ -130,29 +133,33 @@ diff -ur ray.orig/src/common/lookup.h ray/src/common/lookup.h
  
  typedef struct {
  	char	*key;		/* key name */
-@@ -73,4 +74,4 @@
+@@ -73,4 +74,3 @@
  extern void	lu_done();
  extern long	lu_shash();
  
 -extern int	strcmp();
-+// extern int	strcmp();
 diff -ur ray.orig/src/cv/Rmakefile ray/src/cv/Rmakefile
 --- ray.orig/src/cv/Rmakefile	Fri Jan 19 18:47:36 1996
 +++ ray/src/cv/Rmakefile	Sun Jun 17 17:16:16 2001
-@@ -25,9 +25,9 @@
+@@ -22,12 +22,14 @@
+ 
+ LIBFILES = source.cal tilt.cal lamp.tab tmesh.cal
+ 
++MGF_LIB = ../lib/libmgf.a
++
  all:	$(PROGS)
  
  install:	$(PROGS) $(LIBFILES)
 -	cp $(PROGS) $(INSTDIR)
 -	cd $(LIBDIR) ; rm -f $(LIBFILES)
 -	cp $(LIBFILES) $(LIBDIR)
-+	cp $(PROGS) $(DESTDIR)$(INSTDIR)
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
 +	cd $(DESTDIR)$(LIBDIR) ; rm -f $(LIBFILES)
-+	cp $(LIBFILES) $(DESTDIR)$(LIBDIR)
++	install $(LIBFILES) $(DESTDIR)$(LIBDIR)
  
  clean:
  	set nonomatch; rm -f $(PROGS) *.o core
-@@ -37,31 +37,31 @@
+@@ -37,31 +39,31 @@
  	$(CC) $(CFLAGS) -o thf2rad thf2rad.o
  
  ies2rad:	ies2rad.o
@@ -178,20 +185,31 @@ diff -ur ray.orig/src/cv/Rmakefile ray/src/cv/Rmakefile
 -	$(CC) $(CFLAGS) -o obj2rad obj2rad.o trans.o tmesh.o -lrt $(MLIB)
 +	$(CC) $(CFLAGS) -o obj2rad obj2rad.o trans.o tmesh.o -lrayt $(MLIB)
  
- mgf2rad:	MGF_LIB mgf2rad.o tmesh.o
+-mgf2rad:	MGF_LIB mgf2rad.o tmesh.o
 -	$(CC) $(CFLAGS) -o mgf2rad mgf2rad.o tmesh.o -lmgf -lrt $(MLIB)
++mgf2rad:	$(MGF_LIB) mgf2rad.o tmesh.o
 +	$(CC) $(CFLAGS) -o mgf2rad mgf2rad.o tmesh.o -lmgf -lrayt $(MLIB)
  
  rad2mgf:	rad2mgf.o
 -	$(CC) $(CFLAGS) -o rad2mgf rad2mgf.o -lrt $(MLIB)
 +	$(CC) $(CFLAGS) -o rad2mgf rad2mgf.o -lrayt $(MLIB)
  
- mgf2meta:	MGF_LIB mgf2meta.o
+-mgf2meta:	MGF_LIB mgf2meta.o
 -	$(CC) $(CFLAGS) -o mgf2meta mgf2meta.o -lmgf -lmeta -lrt $(MLIB)
++mgf2meta:	$(MGF_LIB) mgf2meta.o
 +	$(CC) $(CFLAGS) -o mgf2meta mgf2meta.o -lmgf -lmeta -lrayt $(MLIB)
  
  mgfilt:
  	cd mgflib ; rm -f mgfilt ; \
+@@ -75,7 +77,7 @@
+ 		CFLAGS="$(OPT) $(MACH) '-DMEM_PTR=char *' -DNOPROTO" ; \
+ 	mv mgf2inv ..
+ 
+-MGF_LIB:
++$(MGF_LIB):
+ 	cd mgflib ; rm -f libmgf.a ; \
+ 	make libmgf.a CC=$(CC) \
+ 		CFLAGS="$(OPT) $(MACH) '-DMEM_PTR=char *' -DNOPROTO" ; \
 diff -ur ray.orig/src/cv/mgf2rad.c ray/src/cv/mgf2rad.c
 --- ray.orig/src/cv/mgf2rad.c	Wed Jul 24 22:07:53 1996
 +++ ray/src/cv/mgf2rad.c	Sun Jun 17 17:20:06 2001
@@ -223,9 +241,9 @@ diff -ur ray.orig/src/gen/Rmakefile ray/src/gen/Rmakefile
 -	cp $(PROGS) $(INSTDIR)
 -	cd $(LIBDIR) ; rm -f $(LIBFILES)
 -	cp $(LIBFILES) $(LIBDIR)
-+	cp $(PROGS) $(DESTDIR)$(INSTDIR)
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
 +	cd $(DESTDIR)$(LIBDIR) ; rm -f $(LIBFILES)
-+	cp $(LIBFILES) $(DESTDIR)$(LIBDIR)
++	install $(LIBFILES) $(DESTDIR)$(LIBDIR)
  
  clean:
  	set nonomatch; rm -f $(PROGS) *.o core
@@ -261,7 +279,21 @@ diff -ur ray.orig/src/gen/Rmakefile ray/src/gen/Rmakefile
 diff -ur ray.orig/src/meta/Rmakefile ray/src/meta/Rmakefile
 --- ray.orig/src/meta/Rmakefile	Fri Dec 10 02:24:07 1993
 +++ ray/src/meta/Rmakefile	Sun Jun 17 17:16:16 2001
-@@ -29,122 +29,103 @@
+@@ -24,160 +24,121 @@
+ 
+ common = $(io) syscalls.o misc.o savestr.o wputs.o eputs.o quit.o $(COMPAT)
+ 
+-install:	general
++PROGS = mx80 meta2tga t4014 pexpand psort cv psmeta plotin imagew impress x11meta \
++	bgraph igraph dgraph igraph dgraph gcomp aed5 plot4
++
++PROGS2 = mt160l mt160 mtext plotout xmeta okimate tbar
++
++all:	$(common) ../lib/libmeta.a $(PROGS)
++
++install:	$(PROGS)
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
+ 
  clean:
  	set nonomatch; rm -f *.o a.out core
  
@@ -271,82 +303,76 @@ diff -ur ray.orig/src/meta/Rmakefile ray/src/meta/Rmakefile
 -$(INSTDIR)/imagew $(INSTDIR)/impress $(INSTDIR)/x11meta \
 -../lib/libmeta.a $(INSTDIR)/bgraph $(INSTDIR)/igraph \
 -$(INSTDIR)/dgraph $(INSTDIR)/gcomp $(INSTDIR)/aed5 $(INSTDIR)/plot4
-+general:	$(DESTDIR)$(INSTDIR)/mx80 $(DESTDIR)$(INSTDIR)/meta2tga \
-+$(DESTDIR)$(INSTDIR)/t4014 $(DESTDIR)$(INSTDIR)/pexpand $(DESTDIR)$(INSTDIR)/psort \
-+$(DESTDIR)$(INSTDIR)/cv $(DESTDIR)$(INSTDIR)/psmeta $(DESTDIR)$(EXEC2)/plotin \
-+$(DESTDIR)$(INSTDIR)/imagew $(DESTDIR)$(INSTDIR)/impress $(DESTDIR)$(INSTDIR)/x11meta \
-+../lib/libmeta.a $(DESTDIR)$(INSTDIR)/bgraph $(DESTDIR)$(INSTDIR)/igraph \
-+$(DESTDIR)$(INSTDIR)/dgraph $(DESTDIR)$(INSTDIR)/gcomp $(DESTDIR)$(INSTDIR)/aed5 $(DESTDIR)$(INSTDIR)/plot4
- 
- special:	$(EXEC2)/mt160l $(EXEC2)/mt160 $(EXEC2)/mtext \
- $(EXEC2)/plotout $(EXEC2)/xmeta $(EXEC2)/okimate $(EXEC2)/tbar
- 
+-
+-special:	$(EXEC2)/mt160l $(EXEC2)/mt160 $(EXEC2)/mtext \
+-$(EXEC2)/plotout $(EXEC2)/xmeta $(EXEC2)/okimate $(EXEC2)/tbar
+-
 -$(INSTDIR)/meta2tga $(EXEC2)/okimate $(INSTDIR)/impress \
 -$(INSTDIR)/mx80 $(INSTDIR)/t4014 $(INSTDIR)/plotout $(INSTDIR)/x11meta \
 -$(EXEC2)/mt160l $(EXEC2)/mt160 $(INSTDIR)/pexpand $(INSTDIR)/plot4 \
 -$(INSTDIR)/psort $(INSTDIR)/imagew $(INSTDIR)/tcurve $(EXEC2)/mtext \
 -$(INSTDIR)/tscat $(INSTDIR)/plotin $(INSTDIR)/tbar $(INSTDIR)/xmeta \
 -../lib/libmeta.a $(INSTDIR)/aed5 $(INSTDIR)/psmeta:	$(common)
-+$(DESTDIR)$(INSTDIR)/meta2tga $(DESTDIR)$(EXEC2)/okimate $(DESTDIR)$(INSTDIR)/impress \
-+$(DESTDIR)$(INSTDIR)/mx80 $(DESTDIR)$(INSTDIR)/t4014 $(DESTDIR)$(INSTDIR)/plotout $(DESTDIR)$(INSTDIR)/x11meta \
-+$(DESTDIR)$(EXEC2)/mt160l $(DESTDIR)$(EXEC2)/mt160 $(DESTDIR)$(INSTDIR)/pexpand $(DESTDIR)$(INSTDIR)/plot4 \
-+$(DESTDIR)$(INSTDIR)/psort $(DESTDIR)$(INSTDIR)/imagew $(DESTDIR)$(INSTDIR)/tcurve $(DESTDIR)$(EXEC2)/mtext \
-+$(DESTDIR)$(INSTDIR)/tscat $(DESTDIR)$(INSTDIR)/plotin $(DESTDIR)$(INSTDIR)/tbar $(DESTDIR)$(INSTDIR)/xmeta \
-+../lib/libmeta.a $(DESTDIR)$(INSTDIR)/aed5 $(DESTDIR)$(INSTDIR)/psmeta:	$(common)
- 
+-
 -$(EXEC2)/mt160l:	mt160l.o mplot.o plot.o palloc.o
 -	$(CC) $(CFLAGS) -o $(EXEC2)/mt160l mt160l.o mplot.o plot.o \
-+$(DESTDIR)$(EXEC2)/mt160l:	mt160l.o mplot.o plot.o palloc.o
-+	$(CC) $(CFLAGS) -o $(DESTDIR)$(EXEC2)/mt160l mt160l.o mplot.o plot.o \
- $(common) palloc.o
- 
+-$(common) palloc.o
+-
 -$(EXEC2)/okimate:	okimate.o mplot.o plot.o palloc.o
 -	$(CC) $(CFLAGS) -o $(EXEC2)/okimate okimate.o mplot.o plot.o \
-+$(DESTDIR)$(EXEC2)/okimate:	okimate.o mplot.o plot.o palloc.o
-+	$(CC) $(CFLAGS) -o $(DESTDIR)$(EXEC2)/okimate okimate.o mplot.o plot.o \
- $(common) palloc.o
+-$(common) palloc.o
++mt160l:	mt160l.o mplot.o plot.o palloc.o
++	$(CC) $(CFLAGS) -o mt160l mt160l.o mplot.o plot.o \
++	$(common) palloc.o
++
++okimate:	okimate.o mplot.o plot.o palloc.o
++	$(CC) $(CFLAGS) -o okimate okimate.o mplot.o plot.o \
++	$(common) palloc.o
  
 -$(INSTDIR)/imagew:	imagew.o mplot.o plot.o palloc.o
-+$(DESTDIR)$(INSTDIR)/imagew:	imagew.o mplot.o plot.o palloc.o
++imagew:	imagew.o mplot.o plot.o palloc.o
  	$(CC) $(CFLAGS) imagew.o mplot.o plot.o $(common) \
 -palloc.o $(MLIB)
 -	cp a.out $(INSTDIR)/imagew
-+palloc.o $(MLIB) -o $(DESTDIR)$(INSTDIR)/imagew
++	palloc.o $(MLIB) -o imagew
  
 -$(EXEC2)/mt160:	mt160.o mplot.o plot.o palloc.o
 -	$(CC) $(CFLAGS) -o $(EXEC2)/mt160 mt160.o mplot.o plot.o $(common) \
-+$(DESTDIR)$(EXEC2)/mt160:	mt160.o mplot.o plot.o palloc.o
-+	$(CC) $(CFLAGS) -o $(DESTDIR)$(EXEC2)/mt160 mt160.o mplot.o plot.o $(common) \
- palloc.o
+-palloc.o
++mt160:	mt160.o mplot.o plot.o palloc.o
++	$(CC) $(CFLAGS) -o mt160 mt160.o mplot.o plot.o $(common) palloc.o
  
 -$(INSTDIR)/meta2tga:	meta2tga.o rplot.o plot.o palloc.o
-+$(DESTDIR)$(INSTDIR)/meta2tga:	meta2tga.o rplot.o plot.o palloc.o
++meta2tga:	meta2tga.o rplot.o plot.o palloc.o
  	$(CC) $(CFLAGS) meta2tga.o rplot.o plot.o $(common) \
 -palloc.o $(MLIB)
 -	cp a.out $(INSTDIR)/meta2tga
-+palloc.o $(MLIB) -o $(DESTDIR)$(INSTDIR)/meta2tga
++	palloc.o $(MLIB) -o meta2tga
  
 -$(INSTDIR)/mx80:	mx80.o mplot.o plot.o palloc.o
-+$(DESTDIR)$(INSTDIR)/mx80:	mx80.o mplot.o plot.o palloc.o
++mx80:	mx80.o mplot.o plot.o palloc.o
  	$(CC) $(CFLAGS) mx80.o mplot.o plot.o $(common) \
 -palloc.o $(MLIB)
 -	cp a.out $(INSTDIR)/mx80
-+palloc.o $(MLIB) -o $(DESTDIR)$(INSTDIR)/mx80
++	palloc.o $(MLIB) -o mx80
  
 -$(INSTDIR)/t4014:	plotout.c ../lib/lib4014.a
-+$(DESTDIR)$(INSTDIR)/t4014:	plotout.c ../lib/lib4014.a
++t4014:	plotout.c ../lib/lib4014.a
  	$(CC) -DFORTEK $(CFLAGS) plotout.c $(common) \
 -../lib/lib4014.a $(MLIB)
 -	cp a.out $(INSTDIR)/t4014
-+../lib/lib4014.a $(MLIB) -o $(DESTDIR)$(INSTDIR)/t4014
++	../lib/lib4014.a $(MLIB) -o t4014
  	rm -f plotout.o
  
 -$(INSTDIR)/impress:	impress.o implot.o imPfuncs.o plot.o
-+$(DESTDIR)$(INSTDIR)/impress:	impress.o implot.o imPfuncs.o plot.o
++impress:	impress.o implot.o imPfuncs.o plot.o
  	$(CC) $(CFLAGS) impress.o implot.o imPfuncs.o \
 -plot.o $(common) $(MLIB)
 -	cp a.out $(INSTDIR)/impress
-+plot.o $(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/impress
++	plot.o $(common) $(MLIB) -o impress
++
++aed5:	aed5.o
++	$(CC) $(CFLAGS) aed5.o $(common) $(MLIB) -o aed5
  
 -$(INSTDIR)/aed5:	aed5.o
 -	$(CC) $(CFLAGS) aed5.o $(common) $(MLIB)
@@ -367,71 +393,68 @@ diff -ur ray.orig/src/meta/Rmakefile ray/src/meta/Rmakefile
 -$(INSTDIR)/plotout:	plotout.c
 -	$(CC) $(CFLAGS) plotout.c $(common) -lplot $(MLIB)
 -	cp a.out $(INSTDIR)/plotout
-+$(DESTDIR)$(INSTDIR)/aed5:	aed5.o
-+	$(CC) $(CFLAGS) aed5.o $(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/aed5
++xmeta:	xmeta.o xplot.o plot.o palloc.o
++	$(CC) $(CFLAGS) xmeta.o xplot.o plot.o palloc.o $(common) -lX11 $(MLIB) -o xmeta
 +
-+$(DESTDIR)$(INSTDIR)/xmeta:	xmeta.o xplot.o plot.o palloc.o
-+	$(CC) $(CFLAGS) xmeta.o xplot.o plot.o palloc.o $(common) -lX11 $(MLIB) -o $(DESTDIR)$(INSTDIR)/xmeta
++x11meta:	xmeta.o x11plot.o plot.o palloc.o
++	$(CC) $(CFLAGS) xmeta.o x11plot.o plot.o palloc.o $(common) -lX11 $(MLIB) -o x11meta
 +
-+$(DESTDIR)$(INSTDIR)/x11meta:	xmeta.o x11plot.o plot.o palloc.o
-+	$(CC) $(CFLAGS) xmeta.o x11plot.o plot.o palloc.o $(common) -lX11 $(MLIB) -o $(DESTDIR)$(INSTDIR)/x11meta
++psmeta:	psmeta.o psplot.o
++	$(CC) $(CFLAGS) psmeta.o psplot.o $(common) $(MLIB) -o psmeta
 +
-+$(DESTDIR)$(INSTDIR)/psmeta:	psmeta.o psplot.o
-+	$(CC) $(CFLAGS) psmeta.o psplot.o $(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/psmeta
-+
-+$(DESTDIR)$(INSTDIR)/plotout:	plotout.c
-+	$(CC) $(CFLAGS) plotout.c $(common) -lplot $(MLIB) -o $(DESTDIR)$(INSTDIR)/plotout
++plotout:	plotout.c
++	$(CC) $(CFLAGS) plotout.c $(common) -lplot $(MLIB) -o plotout
  	rm -f plotout.o
  
 -$(INSTDIR)/plotin:	plotin.o primout.o
 -	$(CC) $(CFLAGS) plotin.o primout.o $(common) $(MLIB)
 -	cp a.out $(INSTDIR)/plotin
-+$(DESTDIR)$(INSTDIR)/plotin:	plotin.o primout.o
-+	$(CC) $(CFLAGS) plotin.o primout.o $(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/plotin
++plotin:	plotin.o primout.o
++	$(CC) $(CFLAGS) plotin.o primout.o $(common) $(MLIB) -o plotin
  
 -$(INSTDIR)/pexpand:	pexpand.o expand.o segment.o palloc.o
-+$(DESTDIR)$(INSTDIR)/pexpand:	pexpand.o expand.o segment.o palloc.o
++pexpand:	pexpand.o expand.o segment.o palloc.o
  	$(CC) $(CFLAGS) pexpand.o expand.o segment.o \
 -$(common) palloc.o $(MLIB)
 -	cp a.out $(INSTDIR)/pexpand
-+$(common) palloc.o $(MLIB) -o $(DESTDIR)$(INSTDIR)/pexpand
++	$(common) palloc.o $(MLIB) -o pexpand
  
 -$(INSTDIR)/psort:	psort.o sort.o palloc.o
 -	$(CC) $(CFLAGS) psort.o sort.o $(common) palloc.o $(MLIB)
 -	cp a.out $(INSTDIR)/psort
-+$(DESTDIR)$(INSTDIR)/psort:	psort.o sort.o palloc.o
-+	$(CC) $(CFLAGS) psort.o sort.o $(common) palloc.o $(MLIB) -o $(DESTDIR)$(INSTDIR)/psort
++psort:	psort.o sort.o palloc.o
++	$(CC) $(CFLAGS) psort.o sort.o $(common) palloc.o $(MLIB) -o psort
  
 -$(INSTDIR)/cv:		cv.o mfio.o cvhfio.o syscalls.o misc.o savestr.o \
-+$(DESTDIR)$(INSTDIR)/cv:		cv.o mfio.o cvhfio.o syscalls.o misc.o savestr.o \
- wputs.o eputs.o quit.o $(COMPAT)
+-wputs.o eputs.o quit.o $(COMPAT)
++cv:	cv.o mfio.o cvhfio.o syscalls.o misc.o savestr.o wputs.o eputs.o quit.o $(COMPAT)
  	$(CC) $(CFLAGS) cv.o mfio.o cvhfio.o syscalls.o misc.o \
 -savestr.o wputs.o eputs.o quit.o $(COMPAT) $(MLIB)
 -	cp a.out $(INSTDIR)/cv
-+savestr.o wputs.o eputs.o quit.o $(COMPAT) $(MLIB) -o $(DESTDIR)$(INSTDIR)/cv
++	savestr.o wputs.o eputs.o quit.o $(COMPAT) $(MLIB) -o cv
  
 -$(INSTDIR)/plot4:	plot4.o primout.o
 -	$(CC) $(CFLAGS) plot4.o primout.o $(common) $(MLIB)
 -	cp a.out $(INSTDIR)/plot4
-+$(DESTDIR)$(INSTDIR)/plot4:	plot4.o primout.o
-+	$(CC) $(CFLAGS) plot4.o primout.o $(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/plot4
++plot4:	plot4.o primout.o
++	$(CC) $(CFLAGS) plot4.o primout.o $(common) $(MLIB) -o plot4
  
 -$(INSTDIR)/tcurve:	tcurve.o tgraph.o primout.o
-+$(DESTDIR)$(INSTDIR)/tcurve:	tcurve.o tgraph.o primout.o
++tcurve:	tcurve.o tgraph.o primout.o
  	$(CC) $(CFLAGS) tcurve.o tgraph.o primout.o \
 -$(common) $(MLIB)
 -	cp a.out $(INSTDIR)/tcurve
-+$(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/tcurve
++	$(common) $(MLIB) -o tcurve
  
 -$(INSTDIR)/tscat:	tscat.o tgraph.o primout.o
-+$(DESTDIR)$(INSTDIR)/tscat:	tscat.o tgraph.o primout.o
++tscat:	tscat.o tgraph.o primout.o
  	$(CC) $(CFLAGS) tscat.o tgraph.o primout.o \
 -$(common) $(MLIB)
 -	cp a.out $(INSTDIR)/tscat
-+$(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/tscat
++	$(common) $(MLIB) -o tscat
 +
-+$(DESTDIR)$(INSTDIR)/tbar:	tbar.o tgraph.o primout.o
-+	$(CC) $(CFLAGS) tbar.o tgraph.o primout.o $(common) $(MLIB) -o $(DESTDIR)$(INSTDIR)/tbar
++tbar:	tbar.o tgraph.o primout.o
++	$(CC) $(CFLAGS) tbar.o tgraph.o primout.o $(common) $(MLIB) -o tbar
  
 -$(INSTDIR)/tbar:	tbar.o tgraph.o primout.o
 -	$(CC) $(CFLAGS) tbar.o tgraph.o primout.o $(common) $(MLIB)
@@ -440,47 +463,51 @@ diff -ur ray.orig/src/meta/Rmakefile ray/src/meta/Rmakefile
 -$(EXEC2)/mtext:	mtext.o primout.o
 -	$(CC) $(CFLAGS) mtext.o primout.o $(common)
 -	cp a.out $(EXEC2)/mtext
-+$(DESTDIR)$(EXEC2)/mtext:	mtext.o primout.o
-+	$(CC) $(CFLAGS) mtext.o primout.o $(common) -o $(DESTDIR)$(EXEC2)/mtext
++mtext:	mtext.o primout.o
++	$(CC) $(CFLAGS) mtext.o primout.o $(common) -o mtext
  
  ../lib/libmeta.a:	metacalls.o primout.o progname.o
- 	ar rc ../lib/libmeta.a metacalls.o primout.o \
-@@ -154,30 +135,26 @@
+-	ar rc ../lib/libmeta.a metacalls.o primout.o \
+-$(common) progname.o
++	ar rc ../lib/libmeta.a metacalls.o primout.o $(common) progname.o
+ 	-ranlib ../lib/libmeta.a
+ 
  ../lib/lib4014.a:
  	cd lib4014; make INSTDIR=../../lib install clean
  
 -$(INSTDIR)/bgraph:	bgraph.o mgvars.o mgraph.o ../lib/libmeta.a \
-+$(DESTDIR)$(INSTDIR)/bgraph:	bgraph.o mgvars.o mgraph.o ../lib/libmeta.a \
- calexpr.o caldefn.o calfunc.o ealloc.o
+-calexpr.o caldefn.o calfunc.o ealloc.o
++bgraph:	bgraph.o mgvars.o mgraph.o ../lib/libmeta.a calexpr.o caldefn.o calfunc.o ealloc.o
  	$(CC) $(CFLAGS) bgraph.o mgvars.o mgraph.o \
 -calexpr.o caldefn.o calfunc.o ealloc.o ../lib/libmeta.a $(MLIB)
 -	cp a.out $(INSTDIR)/bgraph
-+calexpr.o caldefn.o calfunc.o ealloc.o ../lib/libmeta.a $(MLIB) -o $(DESTDIR)$(INSTDIR)/bgraph
++	calexpr.o caldefn.o calfunc.o ealloc.o ../lib/libmeta.a $(MLIB) -o bgraph
  
 -$(INSTDIR)/igraph:	igraph.o mgvars.o mgraph.o ../lib/libmeta.a \
-+$(DESTDIR)$(INSTDIR)/igraph:	igraph.o mgvars.o mgraph.o ../lib/libmeta.a \
- calexpr.o caldefn.o calfunc.o cgraph.o ealloc.o gcalc.o
+-calexpr.o caldefn.o calfunc.o cgraph.o ealloc.o gcalc.o
++igraph:	igraph.o mgvars.o mgraph.o ../lib/libmeta.a calexpr.o caldefn.o calfunc.o cgraph.o ealloc.o gcalc.o
  	$(CC) $(CFLAGS) igraph.o mgvars.o mgraph.o \
- calexpr.o caldefn.o calfunc.o cgraph.o ealloc.o gcalc.o \
+-calexpr.o caldefn.o calfunc.o cgraph.o ealloc.o gcalc.o \
 -../lib/libmeta.a $(MLIB)
 -	cp a.out $(INSTDIR)/igraph
-+../lib/libmeta.a $(MLIB) -o $(DESTDIR)$(INSTDIR)/igraph
++	calexpr.o caldefn.o calfunc.o cgraph.o ealloc.o gcalc.o \
++	../lib/libmeta.a $(MLIB) -o igraph
  
 -$(INSTDIR)/dgraph:	dgraph.o cgraph.o mgvars.o ealloc.o calfunc.o \
-+$(DESTDIR)$(INSTDIR)/dgraph:	dgraph.o cgraph.o mgvars.o ealloc.o calfunc.o \
- calexpr.o caldefn.o savestr.o wputs.o $(COMPAT)
+-calexpr.o caldefn.o savestr.o wputs.o $(COMPAT)
++dgraph:	dgraph.o cgraph.o mgvars.o ealloc.o calfunc.o calexpr.o caldefn.o savestr.o wputs.o $(COMPAT)
  	$(CC) $(CFLAGS) dgraph.o cgraph.o mgvars.o \
 -calfunc.o calexpr.o caldefn.o ealloc.o savestr.o wputs.o $(COMPAT) $(MLIB)
 -	cp a.out $(INSTDIR)/dgraph
-+calfunc.o calexpr.o caldefn.o ealloc.o savestr.o wputs.o $(COMPAT) $(MLIB) -o $(DESTDIR)$(INSTDIR)/dgraph
++	calfunc.o calexpr.o caldefn.o ealloc.o savestr.o wputs.o $(COMPAT) $(MLIB) -o dgraph
  
 -$(INSTDIR)/gcomp:	gcomp.o gcalc.o mgvars.o ealloc.o calfunc.o \
-+$(DESTDIR)$(INSTDIR)/gcomp:	gcomp.o gcalc.o mgvars.o ealloc.o calfunc.o \
- calexpr.o caldefn.o wputs.o savestr.o $(COMPAT)
+-calexpr.o caldefn.o wputs.o savestr.o $(COMPAT)
++gcomp:	gcomp.o gcalc.o mgvars.o ealloc.o calfunc.o calexpr.o caldefn.o wputs.o savestr.o $(COMPAT)
  	$(CC) $(CFLAGS) gcomp.o gcalc.o mgvars.o \
 -calfunc.o calexpr.o caldefn.o ealloc.o wputs.o savestr.o $(COMPAT) $(MLIB)
 -	cp a.out $(INSTDIR)/gcomp
-+calfunc.o calexpr.o caldefn.o ealloc.o wputs.o savestr.o $(COMPAT) $(MLIB) -o $(DESTDIR)$(INSTDIR)/gcomp
++	calfunc.o calexpr.o caldefn.o ealloc.o wputs.o savestr.o $(COMPAT) $(MLIB) -o gcomp
  
  calexpr.o:	calexpr.c calcomp.h
  	$(CC) $(CFLAGS) -c -DVARIABLE -DFUNCTION -DRCONST calexpr.c
@@ -557,7 +584,7 @@ diff -ur ray.orig/src/ot/Rmakefile ray/src/ot/Rmakefile
  
  install:	oconv getbbox
 -	cp oconv getbbox $(INSTDIR)
-+	cp oconv getbbox $(DESTDIR)$(INSTDIR)
++	install oconv getbbox $(DESTDIR)$(INSTDIR)
  
  clean:
  	set nonomatch; rm -f oconv getbbox *.o core
@@ -585,12 +612,12 @@ diff -ur ray.orig/src/px/Rmakefile ray/src/px/Rmakefile
 -	cp xyzimage.csh $(INSTDIR)/xyzimage
 -	chmod 755 $(INSTDIR)/normpat $(INSTDIR)/falsecolor \
 -$(INSTDIR)/pdfblur $(INSTDIR)/pmblur $(INSTDIR)/xyzimage
-+	cp $(PROGS) $(DESTDIR)$(INSTDIR)
-+	cp normpat.csh $(DESTDIR)$(INSTDIR)/normpat
-+	cp falsecolor.csh $(DESTDIR)$(INSTDIR)/falsecolor
-+	cp pdfblur.csh $(DESTDIR)$(INSTDIR)/pdfblur
-+	cp pmblur.csh $(DESTDIR)$(INSTDIR)/pmblur
-+	cp xyzimage.csh $(DESTDIR)$(INSTDIR)/xyzimage
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
++	install normpat.csh $(DESTDIR)$(INSTDIR)/normpat
++	install falsecolor.csh $(DESTDIR)$(INSTDIR)/falsecolor
++	install pdfblur.csh $(DESTDIR)$(INSTDIR)/pdfblur
++	install pmblur.csh $(DESTDIR)$(INSTDIR)/pmblur
++	install xyzimage.csh $(DESTDIR)$(INSTDIR)/xyzimage
 +	chmod 755 $(DESTDIR)$(INSTDIR)/normpat $(DESTDIR)$(INSTDIR)/falsecolor \
 +$(DESTDIR)$(INSTDIR)/pdfblur $(DESTDIR)$(INSTDIR)/pmblur $(DESTDIR)$(INSTDIR)/xyzimage
  
@@ -852,7 +879,13 @@ diff -ur ray.orig/src/rt/Rmakefile ray/src/rt/Rmakefile
  
  #
  # Device drivers for rview (see also devtable.c):
-@@ -92,9 +92,9 @@
+@@ -87,14 +87,14 @@
+ # What this makefile produces:
+ #
+ 
+-PROGS = $(DESTDIR)/rtrace $(DESTDIR)/rpict $(DESTDIR)/rview $(DESTDIR)/lookamb
++PROGS = rtrace rpict rview lookamb
+ 
  all:	$(PROGS) $(SPECIAL)
  
  install:	$(PROGS) $(SPECIAL) rayinit.cal
@@ -861,19 +894,39 @@ diff -ur ray.orig/src/rt/Rmakefile ray/src/rt/Rmakefile
 -	cp rayinit.cal $(LIBDIR)
 +	$(INSTALL) $(PROGS) $(DESTDIR)$(INSTDIR)
 +	rm -f $(DESTDIR)$(LIBDIR)/rayinit.cal
-+	cp rayinit.cal $(DESTDIR)$(LIBDIR)
++	install rayinit.cal $(DESTDIR)$(LIBDIR)
  
  sun:	$(DEVDIR)/sun $(DEVDIR)/sun.com
  
-@@ -126,7 +126,7 @@
- 	$(CC) $(CFLAGS) -o $(DESTDIR)/rview $(RVOBJS) $(DLIBS) $(LIBS)
+@@ -116,19 +116,19 @@
+ # Links:
+ #
  
- $(DESTDIR)/lookamb:	lookamb.o ambio.o
+-$(DESTDIR)/rtrace:	$(RTOBJS)
+-	$(CC) $(CFLAGS) -o $(DESTDIR)/rtrace $(RTOBJS) $(LIBS)
++rtrace:	$(RTOBJS)
++	$(CC) $(CFLAGS) -o rtrace $(RTOBJS) $(LIBS)
+ 
+-$(DESTDIR)/rpict:	$(RPOBJS)
+-	$(CC) $(CFLAGS) -o $(DESTDIR)/rpict $(RPOBJS) $(LIBS)
++rpict:	$(RPOBJS)
++	$(CC) $(CFLAGS) -o rpict $(RPOBJS) $(LIBS)
+ 
+-$(DESTDIR)/rview:	$(RVOBJS)
+-	$(CC) $(CFLAGS) -o $(DESTDIR)/rview $(RVOBJS) $(DLIBS) $(LIBS)
++rview:	$(RVOBJS)
++	$(CC) $(CFLAGS) -o rview $(RVOBJS) $(DLIBS) $(LIBS)
+ 
+-$(DESTDIR)/lookamb:	lookamb.o ambio.o
 -	$(CC) $(CFLAGS) -o $(DESTDIR)/lookamb lookamb.o ambio.o -lrt
-+	$(CC) $(CFLAGS) -o $(DESTDIR)/lookamb lookamb.o ambio.o -lrayt
++lookamb:	lookamb.o ambio.o
++	$(CC) $(CFLAGS) -o lookamb lookamb.o ambio.o -lrayt
  
- $(DEVDIR)/sun:	sundev.o devmain.o colortab.o editline.o
+-$(DEVDIR)/sun:	sundev.o devmain.o colortab.o editline.o
++(DEVDIR)/sun:	sundev.o devmain.o colortab.o editline.o
  	$(CC) $(CFLAGS) -s -o $(DEVDIR)/sun devmain.o sundev.o colortab.o \
+ editline.o -lsuntool -lsunwindow -lpixrect $(LIBS)
+ 
 diff -ur ray.orig/src/util/Rmakefile ray/src/util/Rmakefile
 --- ray.orig/src/util/Rmakefile	Wed Mar 19 00:59:42 1997
 +++ ray/src/util/Rmakefile	Sun Jun 17 17:16:16 2001
@@ -894,15 +947,15 @@ diff -ur ray.orig/src/util/Rmakefile ray/src/util/Rmakefile
 -		$(INSTDIR)/glare $(INSTDIR)/dayfact $(INSTDIR)/debugcal \
 -		$(INSTDIR)/rlux $(INSTDIR)/raddepend $(INSTDIR)/objline
 -	csh -f tradinstall.csh $(INSTDIR) $(LIBDIR)/tcl
-+	cp $(PROGS) $(DESTDIR)$(INSTDIR)
-+	cp objview.csh $(DESTDIR)$(INSTDIR)/objview
-+	cp objline.csh $(DESTDIR)$(INSTDIR)/objline
-+	cp objpict.csh $(DESTDIR)$(INSTDIR)/objpict
-+	cp glare.csh $(DESTDIR)$(INSTDIR)/glare
-+	cp dayfact.csh $(DESTDIR)$(INSTDIR)/dayfact
-+	cp debugcal.csh $(DESTDIR)$(INSTDIR)/debugcal
-+	cp rlux.csh $(DESTDIR)$(INSTDIR)/rlux
-+	cp raddepend.csh $(DESTDIR)$(INSTDIR)/raddepend
++	install $(PROGS) $(DESTDIR)$(INSTDIR)
++	install objview.csh $(DESTDIR)$(INSTDIR)/objview
++	install objline.csh $(DESTDIR)$(INSTDIR)/objline
++	install objpict.csh $(DESTDIR)$(INSTDIR)/objpict
++	install glare.csh $(DESTDIR)$(INSTDIR)/glare
++	install dayfact.csh $(DESTDIR)$(INSTDIR)/dayfact
++	install debugcal.csh $(DESTDIR)$(INSTDIR)/debugcal
++	install rlux.csh $(DESTDIR)$(INSTDIR)/rlux
++	install raddepend.csh $(DESTDIR)$(INSTDIR)/raddepend
 +	chmod 755 $(DESTDIR)$(INSTDIR)/objview $(DESTDIR)$(INSTDIR)/objpict \
 +		$(DESTDIR)$(INSTDIR)/glare $(DESTDIR)$(INSTDIR)/dayfact $(DESTDIR)$(INSTDIR)/debugcal \
 +		$(DESTDIR)$(INSTDIR)/rlux $(DESTDIR)$(INSTDIR)/raddepend $(DESTDIR)$(INSTDIR)/objline
