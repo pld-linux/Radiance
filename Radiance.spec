@@ -1,18 +1,15 @@
 Summary:	Radiance 3D Photo-Realistic Renderer
 Summary(pl):	Fotorealistyczny program do renderowania scen 3D
 Name:		Radiance
-Version:	3R4
+Version:	3R5
 Release:	1
 Epoch:		1
-License:	free use, but non-distributable
+License:	Radiance
 Group:		Applications/Graphics
-Source0:	http://radsite.lbl.gov/radiance/pub/rad%{version}.tar.gz
-Source1:	http://radsite.lbl.gov/radiance/pub/patch%{version}p1.tar.gz
-Patch0:		%{name}-PLD.patch
-Patch1:		%{name}-rview-conflict.patch
-Patch2:		%{name}-shared-libtiff.patch
-NoSource:	0
-NoSource:	1
+Source0:	http://radsite.lbl.gov/radiance/dist/rad%{version}.tar.gz
+# Source0-md5:	7b4eea2658704b08cbb775c071985bf0
+Source1:	http://radsite.lbl.gov/radiance/misc/license.txt
+# Source1-md5:	1981a5fbed86128dde83cb17592c5a1c
 URL:		http://radsite.lbl.gov/radiance/HOME.html
 BuildRequires:	libtiff-devel
 BuildRequires:	tk
@@ -26,49 +23,66 @@ Zaawansowany program do modelowania scen 3D.
 
 %prep
 %setup  -q -n ray
-tar xvfz %{SOURCE1}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 mv -f doc/man/man1/{rview.1,radview.1}
-install -d src/lib
+
+# patches from gentoo
+# patch to not build libtiff that comes with Radiance
+mv src/px/Rmakefile src/px/Rmakefile.orig
+sed -e "s/\.\.\/lib\/libtiff\.a$//g" \
+	src/px/Rmakefile.orig > src/px/Rmakefile
+
+	# fix syntax error in standard.h
+mv src/common/standard.h src/common/standard.h.orig
+sed -e "s/error(et,em) else$/error(et,em); else/g" \
+	src/common/standard.h.orig > src/common/standard.h
+
+# fix incorrect use of errno.h
+mv src/cal/ev.c src/cal/ev.c.orig
+sed -e "s/extern int  errno;/#include <errno.h>/g" \
+	src/cal/ev.c.orig > src/cal/ev.c
+
+install -d src/lib bin/{bin/dev,lib}
 
 %build
-for i in common meta cv gen ot rt px hd util cal/{ev,calc,rcalc,util}; do
-    %{__make} -C src/$i -f Rmakefile \
+wd=`pwd`
+for i in common meta cv gen ot rt px hd util cal; do
+    %{__make} -C src/$i -f Rmakefile  install \
 	OPT="%{rpmcflags} -DSPEED=200" CC="%{__cc}" \
 	ARCH="IBMPC" \
-	MACH="-DBSD -Dlinux -Dtracktime=0 -DDCL_ATOF -DBIGMEM -DNOSTEREO -L/usr/X11R6/lib -I/usr/include/X11" \
+	MACH="-DBSD -Dlinux -Dtracktime=0 -DDCL_ATOF -DBIGMEM -DNOSTEREO -L/usr/X11R6/%{_lib} -I/usr/include/X11" \
 	MLIBDIR="%{_libdir}/ray/meta" \
-	COMPAT="bmalloc.o erf.o getpagesize.o"
+	COMPAT="bmalloc.o erf.o getpagesize.o" \
+	LIBDIR=$wd/bin/lib \
+	INSTDIR=$wd/bin/bin \
+	SPECIAL=""
 done
+
+mv bin/bin/r{,ad}view
+mv bin/bin/dev/* bin/bin
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/ray,%{_mandir}/man{1,3,5}}
+rm -rf bin/bin/dev
 
-tar cf - -C lib * | tar xf - -C $RPM_BUILD_ROOT%{_libdir}/ray
-
-for i in meta cv gen ot rt px hd util cal/{ev,calc,rcalc,util}; do
-    %{__make} -C src/$i -f Rmakefile install \
-	"DESTDIR=$RPM_BUILD_ROOT" \
-	"INSTDIR=%{_bindir}" \
-	"LIBDIR=%{_libdir}/ray"
-done
+tar cf - -C lib . | tar xf - -C $RPM_BUILD_ROOT%{_libdir}/ray
+tar cf - -C bin/lib . | tar xf - -C $RPM_BUILD_ROOT%{_libdir}/ray
+tar cf - -C bin/bin . | tar xf - -C $RPM_BUILD_ROOT%{_bindir}
 
 # remove links to libtiff manuals
-cd doc/man/man1
-for i in fax2ps.1 fax2tiff.1 gif2tiff.1 pal2rgb.1 ppm2tiff.1 ras2tiff.1 \
-	rgb2ycbcr.1 sgi2tiff.1 thumbnail.1 tiff*.1 ; do
-	rm -f $i
-done
-cd ..
-rm -f man3/TIFF* man3/libtiff*
+cd doc/man
+rm -f man1/{fax2ps,*2tiff,pal2rgb,rgb2ycbcr,thumbnail,tiff*}.1
+rm -f man3/TIFF*.3 man3/libtiff*.3
 
 for i in 1 3 5; do
 	install man$i/*.$i $RPM_BUILD_ROOT%{_mandir}/man$i
 done
+
+cd ../..
+
+find $RPM_BUILD_ROOT%{_libdir} doc -name CVS |xargs rm -rf
+install %{SOURCE1} .
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -78,4 +92,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/ray
 %{_mandir}/man?/*
-%doc doc/ps doc/notes/* doc/*.1* README*
+%doc doc/ps doc/notes/* doc/*.1* README* license.txt
