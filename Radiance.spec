@@ -51,7 +51,7 @@ for i in common meta cv gen ot rt px hd util cal; do
 	OPT="%{rpmcflags} -DSPEED=200" CC="%{__cc}" \
 	ARCH="IBMPC" \
 	MACH="-DBSD -Dlinux -Dtracktime=0 -DDCL_ATOF -DBIGMEM -DNOSTEREO -L/usr/X11R6/%{_lib} -I/usr/include/X11" \
-	MLIBDIR="%{_libdir}/ray/meta" \
+	MLIBDIR="%{_datadir}/ray/meta" \
 	COMPAT="bmalloc.o erf.o getpagesize.o" \
 	LIBDIR=$wd/bin/lib \
 	INSTDIR=$wd/bin/bin \
@@ -63,11 +63,11 @@ mv bin/bin/dev/* bin/bin
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/ray,%{_mandir}/man{1,3,5}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/ray,%{_mandir}/man{1,3,5}}
 rm -rf bin/bin/dev
 
-tar cf - -C lib . | tar xf - -C $RPM_BUILD_ROOT%{_libdir}/ray
-tar cf - -C bin/lib . | tar xf - -C $RPM_BUILD_ROOT%{_libdir}/ray
+tar cf - -C lib . | tar xf - -C $RPM_BUILD_ROOT%{_datadir}/ray
+tar cf - -C bin/lib . | tar xf - -C $RPM_BUILD_ROOT%{_datadir}/ray
 tar cf - -C bin/bin . | tar xf - -C $RPM_BUILD_ROOT%{_bindir}
 
 # remove links to libtiff manuals
@@ -90,6 +90,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/ray
+%{_datadir}/ray
 %{_mandir}/man?/*
 %doc doc/ps doc/notes/* doc/*.1* README* license.txt
