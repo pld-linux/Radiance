@@ -43,7 +43,7 @@ for i in common meta cv gen ot rt px hd util cal/{ev,calc,rcalc,util}; do
 	MLIBDIR="%{_libdir}/ray/meta" \
 	COMPAT="bmalloc.o erf.o getpagesize.o"
 done
-	
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/ray,%{_mandir}/man{1,3,5}}
