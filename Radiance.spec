@@ -3,10 +3,10 @@ Summary(pl):	Fotorealistyczny program do renderowania scen 3D.
 Name:		Radiance
 Version:	3r1p8
 Release:	1
+License:	free use, but non-distributable
 Group:		Applications/Graphics
 Group(de):	Applikationen/Grafik
 Group(pl):	Aplikacje/Grafika
-License:	free use, but non-distributable
 Source0:	http://radsite.lbl.gov/radiance/pub/rad%{version}.tar.Z
 Patch0:		%{name}-PLD.patch
 Patch1:		%{name}-rview-conflict.patch
