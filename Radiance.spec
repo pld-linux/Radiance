@@ -5,8 +5,6 @@ Version:	3r1p8
 Release:	1
 License:	free use, but non-distributable
 Group:		Applications/Graphics
-Group(de):	Applikationen/Grafik
-Group(pl):	Aplikacje/Grafika
 Source0:	http://radsite.lbl.gov/radiance/pub/rad%{version}.tar.Z
 Patch0:		%{name}-PLD.patch
 Patch1:		%{name}-rview-conflict.patch
