@@ -10,6 +10,8 @@ Source1:	http://radsite.lbl.gov/radiance/pub/patch%{version}p1.tar.gz
 Patch0:		%{name}-PLD.patch
 Patch1:		%{name}-rview-conflict.patch
 NoSource:	0
+NoSource:	1
+BuildRequires:	tk
 URL:		http://radsite.lbl.gov/radiance/HOME.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
