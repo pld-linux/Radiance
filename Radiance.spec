@@ -2,7 +2,7 @@ Summary:	Radiance 3D Photo-Realistic Renderer
 Summary(pl):	Fotorealistyczny program do renderowania scen 3D
 Name:		Radiance
 Version:	3R5
-Release:	2
+Release:	3
 Epoch:		1
 License:	BSD-like (see included license.txt)
 Group:		Applications/Graphics
