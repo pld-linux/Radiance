@@ -73,7 +73,7 @@ tar cf - -C bin/bin . | tar xf - -C $RPM_BUILD_ROOT%{_bindir}
 # remove links to libtiff manuals
 cd doc/man
 rm -f man1/{fax2ps,*2tiff,pal2rgb,rgb2ycbcr,thumbnail,tiff*}.1
-rm -f man3/TIFF*.3 man3/libtiff*.3
+rm -f man3/{TIFF*,libtiff*}.3
 
 for i in 1 3 5; do
 	install man$i/*.$i $RPM_BUILD_ROOT%{_mandir}/man$i
