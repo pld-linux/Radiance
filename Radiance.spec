@@ -9,7 +9,7 @@ Group:		Applications/Graphics
 Source0:	http://radsite.lbl.gov/radiance/dist/rad%{version}.tar.gz
 # Source0-md5:	7b4eea2658704b08cbb775c071985bf0
 Source1:	http://radsite.lbl.gov/radiance/misc/license.txt
-# Source1-md5:	1981a5fbed86128dde83cb17592c5a1c
+# Source1-md5:	648ed50d18fd84c04a76b767a9c00efd
 URL:		http://radsite.lbl.gov/radiance/HOME.html
 BuildRequires:	libtiff-devel
 BuildRequires:	tk
