@@ -526,7 +526,7 @@ diff -ur ray.orig/src/meta/Rmakefile ray/src/meta/Rmakefile
  
 -install:	general
 +PROGS = mx80 meta2tga t4014 pexpand psort cv psmeta plotin imagew impress x11meta \
-+	bgraph igraph dgraph igraph dgraph gcomp aed5 plot4
++	bgraph igraph dgraph gcomp aed5 plot4
 +PROGS2 = mt160l mt160 mtext plotout xmeta okimate tbar
 +
 +all:  $(common) ../lib/libmeta.a $(PROGS)

@@ -1,6 +1,6 @@
 diff -Nur ray.orig/doc/man/man1/findglare.1 ray/doc/man/man1/findglare.1
 --- ray.orig/doc/man/man1/findglare.1	Mon Nov 15 21:58:32 1993
-+++ ray/doc/man/man1/findglare.1	Fri Jun 22 13:40:10 2001
++++ ray/doc/man/man1/findglare.1	Wed Aug 21 22:33:26 2002
 @@ -54,7 +54,7 @@
  Note that the picture file must contain correct view specifications,
  as maintained by
@@ -26,8 +26,8 @@ diff -Nur ray.orig/doc/man/man1/findglare.1 ray/doc/man/man1/findglare.1
 -rview(1), xglaresrc(1), ximage(1)
 +radview(1), xglaresrc(1), ximage(1)
 diff -Nur ray.orig/doc/man/man1/genblinds.1 ray/doc/man/man1/genblinds.1
---- ray.orig/doc/man/man1/genblinds.1	Mon Oct 10 20:06:53 1994
-+++ ray/doc/man/man1/genblinds.1	Fri Jun 22 13:40:18 2001
+--- ray.orig/doc/man/man1/genblinds.1	Mon Oct 10 21:06:53 1994
++++ ray/doc/man/man1/genblinds.1	Wed Aug 21 22:34:18 2002
 @@ -57,4 +57,4 @@
  .SH AUTHOR
  Jean-Louis Scartezzini and Greg Ward
@@ -36,7 +36,7 @@ diff -Nur ray.orig/doc/man/man1/genblinds.1 ray/doc/man/man1/genblinds.1
 +genbox(1), genrev(1), gensurf(1), genworm(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/genbox.1 ray/doc/man/man1/genbox.1
 --- ray.orig/doc/man/man1/genbox.1	Mon Nov 15 21:58:33 1993
-+++ ray/doc/man/man1/genbox.1	Fri Jun 22 13:40:29 2001
++++ ray/doc/man/man1/genbox.1	Wed Aug 21 22:34:28 2002
 @@ -42,4 +42,4 @@
  Because spheres and cylinders are used to construct boxes with
  rounded edges, a transparent box of this type appears quite messy.
@@ -44,8 +44,8 @@ diff -Nur ray.orig/doc/man/man1/genbox.1 ray/doc/man/man1/genbox.1
 -genrev(1), gensurf(1), genworm(1), rpict(1), rview(1), xform(1)
 +genrev(1), gensurf(1), genworm(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/genclock.1 ray/doc/man/man1/genclock.1
---- ray.orig/doc/man/man1/genclock.1	Wed Apr  9 22:46:29 1997
-+++ ray/doc/man/man1/genclock.1	Fri Jun 22 13:40:36 2001
+--- ray.orig/doc/man/man1/genclock.1	Wed Apr  9 23:46:29 1997
++++ ray/doc/man/man1/genclock.1	Wed Aug 21 22:34:36 2002
 @@ -54,4 +54,4 @@
  .SH AUTHOR
  Greg Ward
@@ -54,7 +54,7 @@ diff -Nur ray.orig/doc/man/man1/genclock.1 ray/doc/man/man1/genclock.1
 +genbox(1), genrev(1), gensurf(1), genworm(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/genprism.1 ray/doc/man/man1/genprism.1
 --- ray.orig/doc/man/man1/genprism.1	Wed Mar 20 01:33:54 1996
-+++ ray/doc/man/man1/genprism.1	Fri Jun 22 13:40:42 2001
++++ ray/doc/man/man1/genprism.1	Wed Aug 21 22:34:48 2002
 @@ -57,4 +57,4 @@
  normals.
  If the normals face inward, the appearance will be bizarre.
@@ -63,7 +63,7 @@ diff -Nur ray.orig/doc/man/man1/genprism.1 ray/doc/man/man1/genprism.1
 +genbox(1), genrev(1), gensurf(1), genworm(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/genrev.1 ray/doc/man/man1/genrev.1
 --- ray.orig/doc/man/man1/genrev.1	Mon Nov 15 21:58:33 1993
-+++ ray/doc/man/man1/genrev.1	Fri Jun 22 13:40:49 2001
++++ ray/doc/man/man1/genrev.1	Wed Aug 21 22:34:56 2002
 @@ -57,4 +57,4 @@
  The -s option doesn't modify the surface normal correctly
  for the opposite side.
@@ -71,9 +71,9 @@ diff -Nur ray.orig/doc/man/man1/genrev.1 ray/doc/man/man1/genrev.1
 -calc(1), genbox(1), gensurf(1), genworm(1), rpict(1), rview(1), xform(1)
 +calc(1), genbox(1), gensurf(1), genworm(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/gensky.1 ray/doc/man/man1/gensky.1
---- ray.orig/doc/man/man1/gensky.1	Sat Dec 21 03:23:24 1996
-+++ ray/doc/man/man1/gensky.1	Fri Jun 22 13:40:57 2001
-@@ -91,7 +91,7 @@
+--- ray.orig/doc/man/man1/gensky.1	Fri Apr 24 19:46:58 1998
++++ ray/doc/man/man1/gensky.1	Wed Aug 21 22:35:03 2002
+@@ -97,7 +97,7 @@
  description to use with the
  .I \-av
  option of the RADIANCE rendering programs.
@@ -82,7 +82,7 @@ diff -Nur ray.orig/doc/man/man1/gensky.1 ray/doc/man/man1/gensky.1
  This value is the cosine-weighted radiance of the sky in
  watts/steradian/meter2.
  .PP
-@@ -221,4 +221,4 @@
+@@ -227,4 +227,4 @@
  .SH AUTHOR
  Greg Ward
  .SH "SEE ALSO"
@@ -90,7 +90,7 @@ diff -Nur ray.orig/doc/man/man1/gensky.1 ray/doc/man/man1/gensky.1
 +rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/gensurf.1 ray/doc/man/man1/gensurf.1
 --- ray.orig/doc/man/man1/gensurf.1	Mon Nov 15 21:58:33 1993
-+++ ray/doc/man/man1/gensurf.1	Fri Jun 22 13:41:11 2001
++++ ray/doc/man/man1/gensurf.1	Wed Aug 21 22:35:10 2002
 @@ -95,4 +95,4 @@
  The smoothing operation requires that functions be defined
  beyond the [0,1] boundaries of s and t.
@@ -99,7 +99,7 @@ diff -Nur ray.orig/doc/man/man1/gensurf.1 ray/doc/man/man1/gensurf.1
 +calc(1), genbox(1), genrev(1), genworm(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/genworm.1 ray/doc/man/man1/genworm.1
 --- ray.orig/doc/man/man1/genworm.1	Mon Nov 15 21:58:33 1993
-+++ ray/doc/man/man1/genworm.1	Fri Jun 22 13:41:18 2001
++++ ray/doc/man/man1/genworm.1	Wed Aug 21 22:35:19 2002
 @@ -46,4 +46,4 @@
  opaque materials should be used with this object.
  Also, a worm cannot double back inside itself without making a mess.
@@ -107,17 +107,35 @@ diff -Nur ray.orig/doc/man/man1/genworm.1 ray/doc/man/man1/genworm.1
 -calc(1), genbox(1), genrev(1), gensurf(1), rpict(1), rview(1), xform(1)
 +calc(1), genbox(1), genrev(1), gensurf(1), rpict(1), radview(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/getinfo.1 ray/doc/man/man1/getinfo.1
---- ray.orig/doc/man/man1/getinfo.1	Mon Nov 15 21:58:34 1993
-+++ ray/doc/man/man1/getinfo.1	Fri Jun 22 13:41:25 2001
+--- ray.orig/doc/man/man1/getinfo.1	Fri Jan 15 19:26:44 1999
++++ ray/doc/man/man1/getinfo.1	Wed Aug 21 22:35:26 2002
 @@ -47,4 +47,4 @@
  .SH AUTHOR
  Greg Ward
  .SH "SEE ALSO"
--oconv(1), pfilt(1), rpict(1), rview(1)
-+oconv(1), pfilt(1), rpict(1), radview(1)
+-oconv(1), pfilt(1), rhinfo(1), rpict(1), rview(1)
++oconv(1), pfilt(1), rhinfo(1), rpict(1), radview(1)
+diff -Nur ray.orig/doc/man/man1/glrad.1 ray/doc/man/man1/glrad.1
+--- ray.orig/doc/man/man1/glrad.1	Thu Jun 11 03:48:21 1998
++++ ray/doc/man/man1/glrad.1	Wed Aug 21 22:40:12 2002
+@@ -49,7 +49,7 @@
+ option of
+ .I rpict(1)
+ and
+-.I rview(1).
++.I radview(1).
+ The
+ .I \-S
+ option turns on full-screen stereo for displays that support it.
+@@ -169,4 +169,4 @@
+ undefined symbol errors.
+ .SH "SEE ALSO"
+ chmod(1), getinfo(1), ls(1), objview(1), oconv(1), ps(1), rad(1),
+-ranimate(1), rhcopy(1), rholo(1), rpict(1), rtrace(1), rview(1), setmon(1)
++ranimate(1), rhcopy(1), rholo(1), rpict(1), rtrace(1), radview(1), setmon(1)
 diff -Nur ray.orig/doc/man/man1/lookamb.1 ray/doc/man/man1/lookamb.1
 --- ray.orig/doc/man/man1/lookamb.1	Mon Nov 15 21:58:35 1993
-+++ ray/doc/man/man1/lookamb.1	Fri Jun 22 13:41:39 2001
++++ ray/doc/man/man1/lookamb.1	Wed Aug 21 22:35:36 2002
 @@ -20,7 +20,7 @@
  .I rpict(1),
  .I rtrace(1),
@@ -134,8 +152,8 @@ diff -Nur ray.orig/doc/man/man1/lookamb.1 ray/doc/man/man1/lookamb.1
 -getinfo(1), oconv(1), pfilt(1), pinterp(1), rpict(1), rtrace(1), rview(1)
 +getinfo(1), oconv(1), pfilt(1), pinterp(1), rpict(1), rtrace(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/mkillum.1 ray/doc/man/man1/mkillum.1
---- ray.orig/doc/man/man1/mkillum.1	Fri Oct  6 18:12:05 1995
-+++ ray/doc/man/man1/mkillum.1	Fri Jun 22 13:41:47 2001
+--- ray.orig/doc/man/man1/mkillum.1	Fri Oct  6 19:12:05 1995
++++ ray/doc/man/man1/mkillum.1	Wed Aug 21 22:35:51 2002
 @@ -18,7 +18,7 @@
  secondary sources whose contributions can be computed more efficiently by
  .I rpict(1)
@@ -152,32 +170,17 @@ diff -Nur ray.orig/doc/man/man1/mkillum.1 ray/doc/man/man1/mkillum.1
 -oconv(1), rad(1), rpict(1), rtrace(1), rview(1)
 +oconv(1), rad(1), rpict(1), rtrace(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/objview.1 ray/doc/man/man1/objview.1
---- ray.orig/doc/man/man1/objview.1	Mon Nov 15 21:58:36 1993
-+++ ray/doc/man/man1/objview.1	Fri Jun 22 13:41:58 2001
-@@ -8,12 +8,12 @@
- .SH DESCRIPTION
- .I Objview
- renders a RADIANCE object interactively using
--.I rview(1).
-+.I radview(1).
- This program is merely a shell script that adds some light
- sources to the scene then calls
- .I oconv(1)
- to make an octree, followed by
--.I rview(1)
-+.I radview(1)
- with a sensible viewpoint.
- .PP
- Commands beginning with an exclamation point ('!')
-@@ -25,4 +25,4 @@
+--- ray.orig/doc/man/man1/objview.1	Thu Jun 11 03:47:38 1998
++++ ray/doc/man/man1/objview.1	Wed Aug 21 22:36:01 2002
+@@ -44,4 +44,4 @@
  .SH AUTHOR
- Greg Ward
+ Greg Ward Larson
  .SH "SEE ALSO"
--oconv(1), rpict(1), rview(1)
-+oconv(1), rpict(1), radview(1)
+-glrad(1), oconv(1), rad(1), rview(1)
++glrad(1), oconv(1), rad(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/oconv.1 ray/doc/man/man1/oconv.1
---- ray.orig/doc/man/man1/oconv.1	Wed Aug 16 03:19:06 1995
-+++ ray/doc/man/man1/oconv.1	Fri Jun 22 13:42:05 2001
+--- ray.orig/doc/man/man1/oconv.1	Wed Aug 16 04:19:06 1995
++++ ray/doc/man/man1/oconv.1	Wed Aug 21 22:36:13 2002
 @@ -167,4 +167,4 @@
  can be used to automate octree creation and maintenance.
  .SH "SEE ALSO"
@@ -186,7 +189,7 @@ diff -Nur ray.orig/doc/man/man1/oconv.1 ray/doc/man/man1/oconv.1
 +rpict(1), radview(1), rtrace(1), xform(1)
 diff -Nur ray.orig/doc/man/man1/pinterp.1 ray/doc/man/man1/pinterp.1
 --- ray.orig/doc/man/man1/pinterp.1	Wed Jan 24 20:47:40 1996
-+++ ray/doc/man/man1/pinterp.1	Fri Jun 22 13:42:14 2001
++++ ray/doc/man/man1/pinterp.1	Wed Aug 21 22:36:50 2002
 @@ -31,7 +31,7 @@
  The input picture files must contain correct view specifications, as
  maintained by
@@ -203,17 +206,17 @@ diff -Nur ray.orig/doc/man/man1/pinterp.1 ray/doc/man/man1/pinterp.1
 -rtrace(1), rview(1)
 +rtrace(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/pvalue.1 ray/doc/man/man1/pvalue.1
---- ray.orig/doc/man/man1/pvalue.1	Wed Jan  8 18:03:05 1997
-+++ ray/doc/man/man1/pvalue.1	Fri Jun 22 13:42:21 2001
-@@ -221,4 +221,4 @@
+--- ray.orig/doc/man/man1/pvalue.1	Fri Jan 15 19:07:54 1999
++++ ray/doc/man/man1/pvalue.1	Wed Aug 21 22:36:59 2002
+@@ -226,4 +226,4 @@
  the scanline ordering or picture size.
  .SH "SEE ALSO"
  getinfo(1), pcompos(1), pfilt(1), pflip(1),
 -protate(1), rpict(1), rtrace(1), rview(1)
 +protate(1), rpict(1), rtrace(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
---- ray.orig/doc/man/man1/rad.1	Thu Oct 17 18:38:57 1996
-+++ ray/doc/man/man1/rad.1	Fri Jun 22 13:42:53 2001
+--- ray.orig/doc/man/man1/rad.1	Mon Feb  1 18:23:11 1999
++++ ray/doc/man/man1/rad.1	Wed Aug 21 22:37:38 2002
 @@ -35,7 +35,7 @@
  .I rpict(1),
  .I pfilt(1),
@@ -245,7 +248,7 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  and
  .I pfilt,
  the exposure setting may be given either as a multiplier or as a
-@@ -388,7 +388,7 @@
+@@ -395,7 +395,7 @@
  values will be stored by
  .I rpict
  or
@@ -254,7 +257,7 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  Although it is not required, an ambient file should be given whenever
  an interreflection calculation is expected.
  This will optimize successive runs and minimize artifacts.
-@@ -428,7 +428,7 @@
+@@ -435,7 +435,7 @@
  This file can later be accessed by
  .I rpict
  or
@@ -263,7 +266,7 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  in subsequent manual runs using the at-sign ('@') file insert option.
  (Using an "OPTFILE" also reduces the length of the rendering
  command, which improves appearance and may even be necessary on some
-@@ -469,7 +469,7 @@
+@@ -476,7 +476,7 @@
  This variable may be used to specify additional options to
  .I rpict
  or
@@ -272,7 +275,7 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  These options will appear after the options set automatically by
  .I rad,
  and thus will override the default values.
-@@ -557,7 +557,7 @@
+@@ -564,7 +564,7 @@
  Now we can invoke
  .I rad
  to take a look at our scene interactively with
@@ -281,7 +284,7 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  .IP "" .2i
  rad -o x11 sample.rif
  .PP
-@@ -566,10 +566,10 @@
+@@ -573,10 +573,10 @@
  .I oconv
  first to create the octree (assuming it doesn't
  already exist), then
@@ -294,7 +297,7 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  we wrote out the view files "view1.vp" and "view2.vp".
  We could add these to "sample.rif" like so:
  .IP "" .2i
-@@ -580,7 +580,7 @@
+@@ -587,7 +587,7 @@
  .fi
  .PP
  To start
@@ -303,16 +306,56 @@ diff -Nur ray.orig/doc/man/man1/rad.1 ray/doc/man/man1/rad.1
  again using vw2 instead of the default, we use:
  .IP "" .2i
  rad -o x11 -v vw2 sample.rif
-@@ -635,4 +635,4 @@
- problematic on systems that don't distinguish case in filenames.
+@@ -643,4 +643,4 @@
  .SH "SEE ALSO"
- make(1), mkillum(1), oconv(1), pfilt(1), raddpend(1), ranimate(1),
--rpict(1), rtrace(1), rview(1), touch(1), vgaimage(1), ximage(1)
-+rpict(1), rtrace(1), radview(1), touch(1), vgaimage(1), ximage(1)
+ glrad(1), make(1), mkillum(1), objview(1), oconv(1),
+ pfilt(1), raddepend(1), ranimate(1),
+-rholo(1), rpict(1), rtrace(1), rview(1), touch(1), vgaimage(1), ximage(1)
++rholo(1), rpict(1), rtrace(1), radview(1), touch(1), vgaimage(1), ximage(1)
+diff -Nur ray.orig/doc/man/man1/rholo.1 ray/doc/man/man1/rholo.1
+--- ray.orig/doc/man/man1/rholo.1	Thu Aug  5 23:55:15 1999
++++ ray/doc/man/man1/rholo.1	Wed Aug 21 22:40:29 2002
+@@ -28,10 +28,10 @@
+ .I Rholo
+ is a program for generating and viewing holodeck files.
+ Similar to
+-.I rview(1),
++.I radview(1),
+ .I rholo
+ can compute views interactively, but unlike
+-.I rview,
++.I radview,
+ it reuses any and all information that was previously computed in
+ this or earlier runs using the given holodeck file,
+ .I hdkfile.
+@@ -624,4 +624,4 @@
+ participating media will usually work.
+ .SH "SEE ALSO"
+ chmod(1), ls(1), ps(1), rad(1), ranimate(1), rhcopy(1), rhinfo(1),
+-rhoptimize(1), rhpict(1), rpict(1), rtrace(1), rview(1)
++rhoptimize(1), rhpict(1), rpict(1), rtrace(1), radview(1)
+diff -Nur ray.orig/doc/man/man1/rhpict.1 ray/doc/man/man1/rhpict.1
+--- ray.orig/doc/man/man1/rhpict.1	Thu Mar 11 01:17:40 1999
++++ ray/doc/man/man1/rhpict.1	Wed Aug 21 22:40:38 2002
+@@ -177,7 +177,7 @@
+ .BI -vf \ file
+ Get view parameters from
+ .I file,
+-which may be a picture or a file created by rview (with the "view" command).
++which may be a picture or a file created by radview (with the "view" command).
+ .TP
+ .BI -S \ seqstart
+ Instead of generating a single picture based only on the view
+@@ -220,4 +220,4 @@
+ Greg Ward
+ .SH "SEE ALSO"
+ getinfo(1), pfilt(1), pinterp(1),
+-printf(3), ra_rgbe(1), rholo(1), rpict(1), rview(1)
++printf(3), ra_rgbe(1), rholo(1), rpict(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/rpict.1 ray/doc/man/man1/rpict.1
---- ray.orig/doc/man/man1/rpict.1	Wed Apr 17 23:22:22 1996
-+++ ray/doc/man/man1/rpict.1	Fri Jun 22 13:43:07 2001
-@@ -157,7 +157,7 @@
+--- ray.orig/doc/man/man1/rpict.1	Fri Feb 26 21:26:39 1999
++++ ray/doc/man/man1/rpict.1	Wed Aug 21 22:38:01 2002
+@@ -161,7 +161,7 @@
  .BI -vf \ file
  Get view parameters from
  .I file,
@@ -321,24 +364,24 @@ diff -Nur ray.orig/doc/man/man1/rpict.1 ray/doc/man/man1/rpict.1
  .TP
  .BI -x \ res
  Set the maximum x resolution to
-@@ -740,4 +740,4 @@
+@@ -767,4 +767,4 @@
  Greg Ward
  .SH "SEE ALSO"
- getinfo(1), lookamb(1), oconv(1), pfilt(1), pinterp(1), rad(1),
--rtrace(1), rview(1)
-+rtrace(1), radview(1)
+ getinfo(1), lookamb(1), oconv(1), pfilt(1), pinterp(1), pmblur(1),
+-printf(3), ra_rgbe(1), rad(1), rtrace(1), rview(1)
++printf(3), ra_rgbe(1), rad(1), rtrace(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/rtrace.1 ray/doc/man/man1/rtrace.1
---- ray.orig/doc/man/man1/rtrace.1	Wed Apr 17 23:22:23 1996
-+++ ray/doc/man/man1/rtrace.1	Fri Jun 22 13:43:14 2001
-@@ -589,4 +589,4 @@
+--- ray.orig/doc/man/man1/rtrace.1	Fri Oct 17 20:48:00 1997
++++ ray/doc/man/man1/rtrace.1	Wed Aug 21 22:38:11 2002
+@@ -603,4 +603,4 @@
  Greg Ward
  .SH "SEE ALSO"
  getinfo(1), lookamb(1), oconv(1), pfilt(1), pinterp(1),
--pvalue(1), rpict(1), rview(1), ximage(1)
-+pvalue(1), rpict(1), radview(1), ximage(1)
+-pvalue(1), rpict(1), rview(1), vwrays(1), ximage(1)
++pvalue(1), rpict(1), radview(1), vwrays(1), ximage(1)
 diff -Nur ray.orig/doc/man/man1/rview.1 ray/doc/man/man1/rview.1
 --- ray.orig/doc/man/man1/rview.1	Thu Feb 15 00:48:41 1996
-+++ ray/doc/man/man1/rview.1	Fri Jun 22 13:45:06 2001
++++ ray/doc/man/man1/rview.1	Wed Aug 21 22:41:09 2002
 @@ -1,9 +1,9 @@
  .\" SCCSid "@(#)rview.1 2.21 2/14/96 LBL"
 -.TH RVIEW 1 2/14/96 RADIANCE
@@ -431,8 +474,8 @@ diff -Nur ray.orig/doc/man/man1/rview.1 ray/doc/man/man1/rview.1
  .I rad,
  then the
 diff -Nur ray.orig/doc/man/man1/trad.1 ray/doc/man/man1/trad.1
---- ray.orig/doc/man/man1/trad.1	Wed Jan 24 20:50:59 1996
-+++ ray/doc/man/man1/trad.1	Fri Jun 22 13:45:16 2001
+--- ray.orig/doc/man/man1/trad.1	Tue Aug 12 23:15:59 1997
++++ ray/doc/man/man1/trad.1	Wed Aug 21 22:38:55 2002
 @@ -111,4 +111,4 @@
  .I wish
  and Tcl/Tk language by John Ousterhout
@@ -440,8 +483,8 @@ diff -Nur ray.orig/doc/man/man1/trad.1 ray/doc/man/man1/trad.1
 -oconv(1), pfilt(1), rad(1), rpict(1), rview(1), wish(1), ximage(1)
 +oconv(1), pfilt(1), rad(1), rpict(1), radview(1), wish(1), ximage(1)
 diff -Nur ray.orig/doc/man/man1/vwright.1 ray/doc/man/man1/vwright.1
---- ray.orig/doc/man/man1/vwright.1	Fri Aug 30 01:32:19 1996
-+++ ray/doc/man/man1/vwright.1	Fri Jun 22 13:45:22 2001
+--- ray.orig/doc/man/man1/vwright.1	Fri Aug 30 02:32:19 1996
++++ ray/doc/man/man1/vwright.1	Wed Aug 21 22:39:05 2002
 @@ -78,4 +78,4 @@
  .SH AUTHOR
  Greg Ward
@@ -449,27 +492,26 @@ diff -Nur ray.orig/doc/man/man1/vwright.1 ray/doc/man/man1/vwright.1
 -pdfblur(1), rad(1), rcalc(1), rpict(1), rview(1)
 +pdfblur(1), rad(1), rcalc(1), rpict(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/xform.1 ray/doc/man/man1/xform.1
---- ray.orig/doc/man/man1/xform.1	Wed Jun 19 01:34:19 1996
-+++ ray/doc/man/man1/xform.1	Fri Jun 22 13:45:29 2001
-@@ -145,4 +145,4 @@
+--- ray.orig/doc/man/man1/xform.1	Wed Jun 16 19:13:16 1999
++++ ray/doc/man/man1/xform.1	Wed Aug 21 22:39:13 2002
+@@ -184,4 +184,4 @@
  .SH BUGS
  Only regular (distortion-free) transformations are allowed.
  .SH "SEE ALSO"
 -genbox(1), gensurf(1), oconv(1), replmarks(1), rpict(1), rview(1)
 +genbox(1), gensurf(1), oconv(1), replmarks(1), rpict(1), radview(1)
 diff -Nur ray.orig/doc/man/man1/ximage.1 ray/doc/man/man1/ximage.1
---- ray.orig/doc/man/man1/ximage.1	Thu Apr 17 19:37:42 1997
-+++ ray/doc/man/man1/ximage.1	Fri Jun 22 13:45:35 2001
-@@ -234,5 +234,5 @@
- .br
+--- ray.orig/doc/man/man1/ximage.1	Tue Oct 27 18:44:51 1998
++++ ray/doc/man/man1/ximage.1	Wed Aug 21 22:39:23 2002
+@@ -239,4 +239,4 @@
  Philip Thompson (MIT)
  .SH "SEE ALSO"
--aedimage(1), pcond(1), pfilt(1), rpict(1), rtrace(1), rview(1), xglaresrc(1),
-+aedimage(1), pcond(1), pfilt(1), rpict(1), rtrace(1), radview(1), xglaresrc(1),
- xshowtrace(1)
+ aedimage(1), normtiff(1), pcond(1), pfilt(1), rpict(1), rtrace(1),
+-rview(1), xglaresrc(1), xshowtrace(1)
++radview(1), xglaresrc(1), xshowtrace(1)
 diff -Nur ray.orig/doc/man/man1/xshowtrace.1 ray/doc/man/man1/xshowtrace.1
 --- ray.orig/doc/man/man1/xshowtrace.1	Mon Nov 15 21:58:47 1993
-+++ ray/doc/man/man1/xshowtrace.1	Fri Jun 22 13:45:44 2001
++++ ray/doc/man/man1/xshowtrace.1	Wed Aug 21 22:39:33 2002
 @@ -19,7 +19,7 @@
  The picture should have been created from a previous
  .I rpict(1)
@@ -486,8 +528,8 @@ diff -Nur ray.orig/doc/man/man1/xshowtrace.1 ray/doc/man/man1/xshowtrace.1
 -oconv(1), rpict(1), rtrace(1), rview(1), ximage(1)
 +oconv(1), rpict(1), rtrace(1), radview(1), ximage(1)
 diff -Nur ray.orig/doc/ray.1 ray/doc/ray.1
---- ray.orig/doc/ray.1	Mon Dec 16 01:35:36 1996
-+++ ray/doc/ray.1	Fri Jun 22 13:46:31 2001
+--- ray.orig/doc/ray.1	Wed Jan 20 23:13:57 1999
++++ ray/doc/ray.1	Wed Aug 21 22:41:38 2002
 @@ -45,7 +45,7 @@
  The central program is
  .I rpict,
@@ -497,7 +539,7 @@ diff -Nur ray.orig/doc/ray.1 ray/doc/ray.1
  is a variation of
  .I rpict
  that computes and displays images interactively.
-@@ -1305,10 +1305,10 @@
+@@ -1320,10 +1320,10 @@
  but the octree will serve as input to the ray-tracing
  programs and directs the use of a scene description.
  .PP
@@ -512,7 +554,7 @@ diff -Nur ray.orig/doc/ray.1 ray/doc/ray.1
  increases the resolution as the user looks on.
 diff -Nur ray.orig/doc/tutorial.1 ray/doc/tutorial.1
 --- ray.orig/doc/tutorial.1	Thu Jan  2 04:16:19 1997
-+++ ray/doc/tutorial.1	Fri Jun 22 13:47:23 2001
++++ ray/doc/tutorial.1	Wed Aug 21 22:42:44 2002
 @@ -134,7 +134,7 @@
  .LP
  Now that we have a simple scene description, we may look at it with
@@ -689,38 +731,241 @@ diff -Nur ray.orig/doc/tutorial.1 ray/doc/tutorial.1
  has stored up some values, the progress rate improves, but it
  never really reaches blistering speed.
  .LP
+diff -Nur ray.orig/lib/tcl/trad.hlp ray/lib/tcl/trad.hlp
+--- ray.orig/lib/tcl/trad.hlp	Thu Oct 26 22:42:52 2000
++++ ray/lib/tcl/trad.hlp	Wed Aug 21 22:52:19 2002
+@@ -487,7 +487,7 @@
+ 
+ There are two basic ways to compute the exposure value.
+ The first is by trial and error, where the value is adjusted up and
+-down within rview using the "e = value" command.
++down within radview using the "e = value" command.
+ Though it sounds flaky, this is the most reliable way to set the
+ exposure (and ambient level) in general lighting situations.
+ 
+@@ -545,7 +545,7 @@
+ To remove an unwanted view, select it and press the "Delete" button.
+ To undo this action, simply press the "Add" button again.
+ 
+-The first view in the list is the default given to rview during
++The first view in the list is the default given to radview during
+ interactive rendering, and is the first view rendered in a batch run.
+ To change the default view, select the newly desired view and press
+ the "Set Default" button.
+@@ -614,7 +614,7 @@
+ define a view.
+ 
+ The simplest view specification is of the form "-vf viewfile", where
+-"viewfile" is a file created with the rview "view" command, or a
++"viewfile" is a file created with the radview "view" command, or a
+ Radiance picture.
+ This method of naming views, although convenient, is not the best
+ since it is difficult to know exactly where such a view is by
+@@ -702,7 +702,7 @@
+ The "Set Default" button may be used to make the selected view the
+ default view for rendering.
+ This simply moves the view to the top of the list in the rad input file.
+-The default view will be the one normally rendered by rview when rad
++The default view will be the one normally rendered by radview when rad
+ is started interactively, and is the first view rendered in a batch
+ process.
+ 
+@@ -838,7 +838,7 @@
+ minutes) between progress reports.
+ 
+ Other windows allow the user to customize the options to oconv(1),
+-mkillum(1), rview(1) and rpict(1), and pfilt(1).
++mkillum(1), radview(1) and rpict(1), and pfilt(1).
+ 
+ .Options.Quality
+ 
+@@ -916,7 +916,7 @@
+ 
+ The "Optfile" setting assigns a file to hold rendering options,
+ which may be a convenience when these options are reused for
+-rtrace(1) or rpiece(1), or manual invocations of rview or rpict.
++rtrace(1) or rpiece(1), or manual invocations of radview or rpict.
+ Using an options file also reduces the size of the command line,
+ making it a little easier on the eye.
+ 
+@@ -977,7 +977,7 @@
+ .Options.Render
+ 
+ The "render opts" window is used to specify additional options to
+-the rview(1) and rpict(1) rendering programs.
++the radview(1) and rpict(1) rendering programs.
+ Most of the important parameters are computed by rad, so this
+ window is usually used to override specific parameters or to give
+ additional information, such as which materials to exclude from the
+@@ -1109,7 +1109,7 @@
+ The "rview" button on the Action screen starts an interactive
+ rendering for the selected view, indicated by the menu button
+ just to the right.
+-Other views may be accessed within rview using the "L name"
++Other views may be accessed within radview using the "L name"
+ command, and new views can be added with the "V name"
+ command.
+ 
+@@ -1119,7 +1119,7 @@
+ a number later), then use the Views screen to override the previous
+ view definition with the new one.
+ (See the "View" topic in the current
+-help category, the "Change" topic under "Views" and the rview(1)
++help category, the "Change" topic under "Views" and the radview(1)
+ manual page for more information.)
+ 
+ If the octree is out-of-date, it will be rebuilt before rendering
+@@ -1129,7 +1129,7 @@
+ 
+ The Action screen contains two menus for selecting views.
+ The top menu, next to the "rview" button, sets the view to start
+-with in rview, and is selected from the current view list.
++with in radview, and is selected from the current view list.
+ The second view menu, next to the "Start" button for batch
+ rendering, selects the view or views to render in batch mode.
+ If the special entry "ALL" is selected, then every view in the
 diff -Nur ray.orig/src/rt/Rmakefile ray/src/rt/Rmakefile
---- ray.orig/src/rt/Rmakefile	Fri Jun 22 13:13:13 2001
-+++ ray/src/rt/Rmakefile	Fri Jun 22 13:37:28 2001
-@@ -87,7 +87,7 @@
+--- ray.orig/src/rt/Rmakefile	Wed Aug 21 21:52:29 2002
++++ ray/src/rt/Rmakefile	Wed Aug 21 22:43:22 2002
+@@ -85,7 +85,7 @@
  # What this makefile produces:
  #
  
 -PROGS = rtrace rpict rview lookamb
 +PROGS = rtrace rpict radview lookamb
  
- all:	$(PROGS) $(SPECIAL)
+ all:	$(PROGS)
  
-@@ -122,8 +122,8 @@
- $(DESTDIR)/rpict:	$(RPOBJS)
- 	$(CC) $(CFLAGS) -o $(DESTDIR)/rpict $(RPOBJS) $(LIBS)
+@@ -120,8 +120,8 @@
+ rpict:	$(RPOBJS)
+ 	$(CC) $(CFLAGS) -o rpict $(RPOBJS) $(LIBS)
  
 -rview:	$(RVOBJS)
--	$(CC) $(CFLAGS) -o rview $(RVOBJS) $(DLIBS) $(LIBS)
+-	$(CC) $(CFLAGS) -o rview $(RVOBJS) $(LIBS) $(DLIBS)
 +radview:	$(RVOBJS)
-+	$(CC) $(CFLAGS) -o radview $(RVOBJS) $(DLIBS) $(LIBS)
++	$(CC) $(CFLAGS) -o radview $(RVOBJS) $(LIBS) $(DLIBS)
  
- $(DESTDIR)/lookamb:	lookamb.o ambio.o
- 	$(CC) $(CFLAGS) -o $(DESTDIR)/lookamb lookamb.o ambio.o -lrayt
-diff -Nur ray.orig/src/util/objview.csh ray/src/util/objview.csh
---- ray.orig/src/util/objview.csh	Fri Feb  9 21:57:00 1996
-+++ ray/src/util/objview.csh	Fri Jun 22 13:39:40 2001
-@@ -7,7 +7,7 @@
- set tmpdir=/usr/tmp
- set octree=$tmpdir/ov$$.oct
- set tmpfiles="$octree"
--if ( ! $?RVIEW ) set RVIEW="rview"
-+if ( ! $?RVIEW ) set RVIEW="radview"
- onintr quit
+ lookamb:	lookamb.o ambio.o
+ 	$(CC) $(CFLAGS) -o lookamb lookamb.o ambio.o $(LIBS)
+diff -Nur ray.orig/src/util/rad.c ray/src/util/rad.c
+--- ray.orig/src/util/rad.c	Tue Feb  2 17:57:57 1999
++++ ray/src/util/rad.c	Wed Aug 21 22:46:41 2002
+@@ -1068,14 +1068,14 @@
+ 		return;
+ 	if (sayview)
+ 		printview(vw);
+-	sprintf(combuf, "rview %s%s%s -R %s ", vw, po, opts, rifname);
++	sprintf(combuf, "radview %s%s%s -R %s ", vw, po, opts, rifname);
+ 	if (rvdevice != NULL)
+ 		sprintf(combuf+strlen(combuf), "-o %s ", rvdevice);
+ 	if (vdef(EXPOSURE))
+ 		sprintf(combuf+strlen(combuf), "-pe %s ", vval(EXPOSURE));
+ 	strcat(combuf, oct1name);
+ 	if (runcom(combuf)) {		/* run it */
+-		fprintf(stderr, "%s: error running rview\n", progname);
++		fprintf(stderr, "%s: error running radview\n", progname);
+ 		quit(1);
+ 	}
+ }
+diff -Nur ray.orig/src/util/trad.hlp ray/src/util/trad.hlp
+--- ray.orig/src/util/trad.hlp	Tue Oct 20 20:52:16 1998
++++ ray/src/util/trad.hlp	Wed Aug 21 22:47:57 2002
+@@ -487,7 +487,7 @@
  
- oconv - $argv[*]:q > $octree <<_EOF_
+ There are two basic ways to compute the exposure value.
+ The first is by trial and error, where the value is adjusted up and
+-down within rview using the "e = value" command.
++down within radview using the "e = value" command.
+ Though it sounds flaky, this is the most reliable way to set the
+ exposure (and ambient level) in general lighting situations.
+ 
+@@ -545,7 +545,7 @@
+ To remove an unwanted view, select it and press the "Delete" button.
+ To undo this action, simply press the "Add" button again.
+ 
+-The first view in the list is the default given to rview during
++The first view in the list is the default given to radview during
+ interactive rendering, and is the first view rendered in a batch run.
+ To change the default view, select the newly desired view and press
+ the "Set Default" button.
+@@ -614,7 +614,7 @@
+ define a view.
+ 
+ The simplest view specification is of the form "-vf viewfile", where
+-"viewfile" is a file created with the rview "view" command, or a
++"viewfile" is a file created with the radview "view" command, or a
+ Radiance picture.
+ This method of naming views, although convenient, is not the best
+ since it is difficult to know exactly where such a view is by
+@@ -702,7 +702,7 @@
+ The "Set Default" button may be used to make the selected view the
+ default view for rendering.
+ This simply moves the view to the top of the list in the rad input file.
+-The default view will be the one normally rendered by rview when rad
++The default view will be the one normally rendered by radview when rad
+ is started interactively, and is the first view rendered in a batch
+ process.
+ 
+@@ -838,7 +838,7 @@
+ minutes) between progress reports.
+ 
+ Other windows allow the user to customize the options to oconv(1),
+-mkillum(1), rview(1) and rpict(1), and pfilt(1).
++mkillum(1), radview(1) and rpict(1), and pfilt(1).
+ 
+ .Options.Quality
+ 
+@@ -916,7 +916,7 @@
+ 
+ The "Optfile" setting assigns a file to hold rendering options,
+ which may be a convenience when these options are reused for
+-rtrace(1) or rpiece(1), or manual invocations of rview or rpict.
++rtrace(1) or rpiece(1), or manual invocations of radview or rpict.
+ Using an options file also reduces the size of the command line,
+ making it a little easier on the eye.
+ 
+@@ -977,7 +977,7 @@
+ .Options.Render
+ 
+ The "render opts" window is used to specify additional options to
+-the rview(1) and rpict(1) rendering programs.
++the radview(1) and rpict(1) rendering programs.
+ Most of the important parameters are computed by rad, so this
+ window is usually used to override specific parameters or to give
+ additional information, such as which materials to exclude from the
+@@ -1026,7 +1026,7 @@
+ run, usually via rad(1).
+ The top row of buttons is used to update the octree following a
+ change to one or more input files.
+-The "rview" button starts an interactive rendering in the
++The "radview" button starts an interactive rendering in the
+ foreground.
+ The next set of buttons provides for the control of a batch
+ rendering process, taking place in the background.
+@@ -1109,7 +1109,7 @@
+ The "rview" button on the Action screen starts an interactive
+ rendering for the selected view, indicated by the menu button
+ just to the right.
+-Other views may be accessed within rview using the "L name"
++Other views may be accessed within radview using the "L name"
+ command, and new views can be added with the "V name"
+ command.
+ 
+@@ -1119,7 +1119,7 @@
+ a number later), then use the Views screen to override the previous
+ view definition with the new one.
+ (See the "View" topic in the current
+-help category, the "Change" topic under "Views" and the rview(1)
++help category, the "Change" topic under "Views" and the radview(1)
+ manual page for more information.)
+ 
+ If the octree is out-of-date, it will be rebuilt before rendering
+@@ -1129,7 +1129,7 @@
+ 
+ The Action screen contains two menus for selecting views.
+ The top menu, next to the "rview" button, sets the view to start
+-with in rview, and is selected from the current view list.
++with in radview, and is selected from the current view list.
+ The second view menu, next to the "Start" button for batch
+ rendering, selects the view or views to render in batch mode.
+ If the special entry "ALL" is selected, then every view in the
