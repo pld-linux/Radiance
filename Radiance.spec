@@ -21,7 +21,7 @@ Advenced 3D Photo-Realistic Renderer.
 Zaawansowany program do modelowania scen 3D.
 
 %prep
-%setup  -q -n ray
+%setup -q -n ray
 
 mv -f doc/man/man1/{rview.1,radview.1}
 
@@ -46,7 +46,7 @@ install -d src/lib bin/{bin/dev,lib}
 %build
 wd=`pwd`
 for i in common meta cv gen ot rt px hd util cal; do
-    %{__make} -C src/$i -f Rmakefile  install \
+	%{__make} -C src/$i -f Rmakefile install \
 	OPT="%{rpmcflags} -DSPEED=200" CC="%{__cc}" \
 	ARCH="IBMPC" \
 	MACH="-DBSD -Dlinux -Dtracktime=0 -DDCL_ATOF -DBIGMEM -DNOSTEREO -L/usr/X11R6/%{_lib} -I/usr/include/X11" \
