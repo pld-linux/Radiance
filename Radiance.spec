@@ -4,7 +4,7 @@ Name:		Radiance
 Version:	3R5
 Release:	1
 Epoch:		1
-License:	Radiance
+License:	BSD-like (see included license.txt)
 Group:		Applications/Graphics
 Source0:	http://radsite.lbl.gov/radiance/dist/rad%{version}.tar.gz
 # Source0-md5:	7b4eea2658704b08cbb775c071985bf0
