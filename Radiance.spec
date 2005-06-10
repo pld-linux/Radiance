@@ -6,6 +6,7 @@ Release:	3
 Epoch:		1
 License:	BSD-like (see included license.txt)
 Group:		Applications/Graphics
+#Source0Download: http://radsite.lbl.gov/radiance/download.html
 Source0:	http://radsite.lbl.gov/radiance/dist/rad%{version}.tar.gz
 # Source0-md5:	7b4eea2658704b08cbb775c071985bf0
 Source1:	http://radsite.lbl.gov/radiance/misc/license.txt
