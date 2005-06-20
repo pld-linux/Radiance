@@ -24,8 +24,6 @@ Zaawansowany program do modelowania scen 3D.
 %prep
 %setup -q -n ray
 
-#mv -f doc/man/man1/{rview.1,radview.1}
-
 # patches from gentoo
 # patch to not build libtiff that comes with Radiance
 mv src/px/Rmakefile src/px/Rmakefile.orig
@@ -78,6 +76,7 @@ rm -f man3/{TIFF*,libtiff*}.3
 for i in 1 3 5; do
 	install man$i/*.$i $RPM_BUILD_ROOT%{_mandir}/man$i
 done
+echo '.so rvu.1' > $RPM_BUILD_ROOT%{_mandir}/man1/radview.1
 
 cd ../..
 
