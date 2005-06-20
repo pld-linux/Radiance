@@ -1,14 +1,14 @@
 Summary:	Radiance 3D Photo-Realistic Renderer
 Summary(pl):	Fotorealistyczny program do renderowania scen 3D
 Name:		Radiance
-Version:	3R5
-Release:	3
+Version:	3R6P1
+Release:	1
 Epoch:		1
 License:	BSD-like (see included license.txt)
 Group:		Applications/Graphics
 #Source0Download: http://radsite.lbl.gov/radiance/download.html
 Source0:	http://radsite.lbl.gov/radiance/dist/rad%{version}.tar.gz
-# Source0-md5:	7b4eea2658704b08cbb775c071985bf0
+# Source0-md5:	d987a5d09f4876795b427e5cb4374048
 Source1:	http://radsite.lbl.gov/radiance/misc/license.txt
 URL:		http://radsite.lbl.gov/radiance/HOME.html
 BuildRequires:	libtiff-devel
@@ -24,7 +24,7 @@ Zaawansowany program do modelowania scen 3D.
 %prep
 %setup -q -n ray
 
-mv -f doc/man/man1/{rview.1,radview.1}
+#mv -f doc/man/man1/{rview.1,radview.1}
 
 # patches from gentoo
 # patch to not build libtiff that comes with Radiance
