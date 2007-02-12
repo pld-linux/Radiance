@@ -1,5 +1,5 @@
 Summary:	Radiance 3D Photo-Realistic Renderer
-Summary(pl.UTF-8):   Fotorealistyczny program do renderowania scen 3D
+Summary(pl.UTF-8):	Fotorealistyczny program do renderowania scen 3D
 Name:		Radiance
 Version:	3R6P1
 Release:	1
